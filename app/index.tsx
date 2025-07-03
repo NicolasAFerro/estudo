@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button } from "react-native";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Button, TextInput } from "react-native";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 
@@ -44,10 +45,25 @@ export default function Index() {
   const nameChanged = useMemo(() => {
     return `${name} | ${new Date().toLocaleTimeString()}`;
   }, [name]);
+
+  //tipo, ele pode alterar mas só aquele ponto especifico do componente, não causa o re-render
+  // do componente inteiro
+  const inputRef = useRef<TextInput>({} as TextInput);
   return (
     <SafeAreaView className="flex-1 p-5">
       <Header name={nameChanged} title={title} />
       <Button title="Change Name" onPress={handlePress} />
+
+      <TextInput
+        ref={inputRef}
+        className="p-5 mb-10 bg-black mt-5 text-white"
+      ></TextInput>
+      <Button
+        title="USE REF"
+        onPress={() => {
+          inputRef.current.focus();
+        }}
+      />
     </SafeAreaView>
   );
 }
