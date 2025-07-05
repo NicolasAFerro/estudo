@@ -13,5 +13,5 @@ export default function RootLayout() {
     }
   }, [colorScheme]);
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <Stack></Stack>;
 }
