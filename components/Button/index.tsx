@@ -12,14 +12,22 @@ interface ButtonProps extends TouchableOpacityProps {
   loading?: boolean;
 }
 
-export default function Button({ children, loading, ...rest }: ButtonProps) {
+export default function Button({
+  children,
+  loading,
+  className,
+  ...rest
+}: ButtonProps) {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
   const spinnerColor = isDark ? "#000" : "#fff";
 
   return (
     <TouchableOpacity
-      className="bg-black dark:bg-white px-4 py-3 rounded-md items-center flex-row justify-center"
+      className={`
+        bg-black dark:bg-white rounded-md items-center 
+        flex-row justify-center ${className ?? ""}
+      `}
       disabled={loading || rest.disabled}
       {...rest}
     >

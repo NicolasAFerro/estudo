@@ -3,10 +3,12 @@ import { Text, TextProps } from "react-native";
 interface MyTextProps extends TextProps {
   children: string;
 }
-export default function index({ children }: MyTextProps) {
+export default function Index({ children, className }: MyTextProps) {
   //const { colorScheme, toggleColorScheme } = useColorScheme();
   return (
-    <Text className="text-black dark:text-white text-2xl capitalize">
+    <Text
+      className={`text-black dark:text-white text-2xl capitalize ${className}`}
+    >
       {children}
     </Text>
   );
