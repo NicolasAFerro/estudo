@@ -6,8 +6,11 @@ import MyText from "../../components/MyText";
 
 export default function ProfileScreen() {
   const router = useRouter();
+  //O hook useLocalSearchParams retorna os valores da query string,
+  // e eles podem vir assim: /profile?name=João&name=Maria
   const params = useLocalSearchParams();
-
+  let { name, adress } = params;
+  console.warn(params);
   const handlerVoltaTudo = () => {
     router.dismissAll();
   };
@@ -20,7 +23,13 @@ export default function ProfileScreen() {
     }
   };
   const handleReplace = () => {
-    router.replace("/");
+    router.replace({
+      pathname: "/",
+      params: {
+        from: "profile",
+        updated: "true",
+      },
+    });
   };
   const handleProfile = () => {
     router.push("/profile");
