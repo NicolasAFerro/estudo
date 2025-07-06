@@ -51,7 +51,7 @@ Join our community of developers creating universal apps.
 
 ---
 
-pedaços de código e expilicações
+## alguns Hooks
 
 ```
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -147,5 +147,92 @@ return (
     </SafeAreaView>
 
 );
+}
+```
+
+---
+
+## Stack Navigator e Params
+
+```
+nicolasferro@MacBook-Air-de-NICOLAS app % tree
+.
+├── \_layout.tsx
+├── global.css
+├── index.tsx
+└── profile.tsx
+```
+
+```
+nicolasferro@MacBook-Air-de-NICOLAS pages % tree
+.
+├── Home
+│ └── index.tsx
+├── Login
+│ └── index.tsx
+└── Profile
+└── index.tsx
+```
+
+home page, temos que usar o hook useLocalParams, e useNavigator
+
+```
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React from "react";
+import { View } from "react-native";
+import Button from "../../components/Button";
+import MyText from "../../components/MyText";
+
+export default function HomeScreen() {
+  const router = useRouter();
+  const params = useLocalSearchParams();
+  console.log(params);
+
+  const handleNavigation = () => {
+    router.push({
+      pathname: "/profile",
+      params: { name: "esse é um nome", adress: "é nois" },
+    });
+  };
+
+  return (
+    <View className="flex-1 p-5 dark:bg-black justify-center items-center gap-10">
+      <MyText>Home</MyText>
+      <Button onPress={handleNavigation}>
+        Click para navegar para profile
+      </Button>
+    </View>
+  );
+}
+```
+
+```
+
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React from "react";
+import { View } from "react-native";
+import Button from "../../components/Button";
+import MyText from "../../components/MyText";
+
+export default function HomeScreen() {
+  const router = useRouter();
+  const params = useLocalSearchParams();
+  console.log(params);
+
+  const handleNavigation = () => {
+    router.push({
+      pathname: "/profile",
+      params: { name: "esse é um nome", adress: "é nois" },
+    });
+  };
+
+  return (
+    <View className="flex-1 p-5 dark:bg-black justify-center items-center gap-10">
+      <MyText>Home</MyText>
+      <Button onPress={handleNavigation}>
+        Click para navegar para profile
+      </Button>
+    </View>
+  );
 }
 ```

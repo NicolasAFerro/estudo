@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TextProps } from "react-native";
 interface MyTextProps extends TextProps {
   children: string;
+  className?: string;
 }
 export default function Index({ children, className }: MyTextProps) {
   //const { colorScheme, toggleColorScheme } = useColorScheme();
